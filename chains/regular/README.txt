@@ -2,7 +2,7 @@ Certificate chains served by the eMudhra test hosts
 ====================================================
 
 Each file holds the full chain sent by one of the test hosts at
-https://emudhra.we-have-a-problem.com/, in PEM format, leaf first.
+https://emudhra.tki.jp/, in PEM format, leaf first.
 The chains were captured on 6 November 2026.
 
   <kind>-<gen>.emudhra.tki.jp.pem
