@@ -1,3 +1,3 @@
-# we-have-a-problem.com
+# emudhra.tki.jp
 
-* https://emudhra.we-have-a-problem.com/
+* https://emudhra.tki.jp/
