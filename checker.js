@@ -33,7 +33,7 @@ const HOSTS = [
 // it cannot be reached, the results above may reflect a network problem rather
 // than the trust store, and a note says so. It also gives the statistics a
 // count of the clients that ran the check, patched or not.
-const PROBE_HOST = 'probe-emudhra.we-have-a-problem.com';
+const PROBE_HOST = 'probe.emudhra.tki.jp';
 const TIMEOUT_MS = 10000;
 const COOLDOWN_MS = 10000;
 // Present in every test server's response body. A response without it came
