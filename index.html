@@ -122,7 +122,32 @@ openssl dgst -sha384 -verify EM-DV-TLS-CA-G3B.pub.pem -signature EM-DV-TLS-CA-G3
 <p><button id="rerun" type="button">再確認</button> <small id="summary"></small></p>
 <p>✅は接続に失敗したことだけを示します。ブラウザーは失敗理由をページへ通知しないため、ネットワーク障害と証明書拒否は同じ結果になります。再確認するには、その行のリンクを直接開いてください。警告ページなしで表示された場合、そのブラウザーは影響を受けています。</p>
 <p>ブラウザーがTLSを中継・検査するプロキシ配下にある場合、結果にはブラウザーではなくプロキシのトラストストアが反映されます。この場合の❌は、プロキシが侵害された中間CAをまだ信頼していることを意味します。ブラウザー自体が修正済みでも、プロキシが更新または無効化されるまで、その配下の全クライアントは影響を受けます。</p>
-<p>2026年10月22日、「No CT」と表示される2つのチェーンが追加されました。これらのリーフ証明書はCertificate Transparency（CT）ログに一度も記録されていないため、CTを必須とするクライアントは、中間CAをまだ信頼していても拒否します。これらのホストへ接続できた場合、そのクライアントは侵害された中間CAを信頼し、かつCTを強制していません。後述のとおり、この種のクライアントは発見されずに攻撃される可能性があります。</p>
+<div class="ct-check-notice">
+  <p>
+    この日本語ミラーサイトでは、検証用証明書をCertificate Transparency
+    （CT）ログへ登録できていません。そのため、このサイトの検証用ホストでは、
+    CTログに登録された証明書を使用した確認は行えません。
+  </p>
+
+  <p>
+    CTログに登録された証明書で確認する場合は、以下のボタンから、
+    元となったサイトの確認機能をご利用ください。
+    ボタンを押すと、元となったサイトが管理する
+    <code>*.we-have-a-problem.com</code>
+    の検証用ドメインへ接続します。
+  </p>
+
+  <p>
+    <a
+      class="ct-check-button"
+      href="https://emudhra.we-have-a-problem.com/#check"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      CTログに登録された証明書を確認する
+    </a>
+  </p>
+</div>
 <p>curlなどのコマンドラインクライアントを確認するには、次を実行します。</p>
 <pre translate="no">curl https://dv-g3b.emudhra.tki.jp/
 curl https://dv-g3b-aaa.emudhra.tki.jp/</pre>
