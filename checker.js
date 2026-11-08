@@ -8,10 +8,12 @@
 
 // Hosts under test. Each intermediate is served twice: first chaining to its
 // emSign root, then via the Sectigo cross-sign chaining to AAA Certificate
-// Services. The `noct` hosts serve a leaf that was never logged to Certificate
-// Transparency, so CT-enforcing clients reject them even if they trust the
-// intermediate. Each server must respond to GET / with
-// `Access-Control-Allow-Origin: *` and a body containing EXPECTED_BODY.
+// All probe hosts on this Japanese mirror use leaf certificates that were
+// not logged to Certificate Transparency and have no SCTs. Clients that
+// enforce CT may reject them even if they still trust the intermediate CA.
+//
+// Each probe server must allow requests from https://emudhra.tki.jp and
+// respond to GET / with a body containing EXPECTED_BODY.
 const HOSTS = [
   { host: 'dv-g3b.emudhra.tki.jp',     label: 'CN=EM DV TLS CA - G3B, O=eMudhra BV, C=NL', root: 'emSign Root TLS CA - G3', noct: true },
   { host: 'dv-g3c.emudhra.tki.jp',     label: 'CN=EM DV TLS CA - G3C, O=eMudhra Inc, C=US', root: 'emSign Root TLS CA - G3', noct: true },
