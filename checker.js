@@ -13,20 +13,20 @@
 // intermediate. Each server must respond to GET / with
 // `Access-Control-Allow-Origin: *` and a body containing EXPECTED_BODY.
 const HOSTS = [
-  { host: 'dv-g3b.emudhra.tki.jp',     label: 'CN=EM DV TLS CA - G3B, O=eMudhra BV, C=NL', root: 'emSign Root TLS CA - G3' },
-  { host: 'dv-g3c.emudhra.tki.jp',     label: 'CN=EM DV TLS CA - G3C, O=eMudhra Inc, C=US', root: 'emSign Root TLS CA - G3' },
-  { host: 'ov-g3b.emudhra.tki.jp',     label: 'CN=EM OV TLS CA - G3B, O=eMudhra BV, C=NL', root: 'emSign Root TLS CA - G3' },
-  { host: 'ov-g3c.emudhra.tki.jp',     label: 'CN=EM OV TLS CA - G3C, O=eMudhra Inc, C=US', root: 'emSign Root TLS CA - G3' },
-  { host: 'ev-g3b.emudhra.tki.jp',     label: 'CN=EM EV TLS CA - G3B, O=eMudhra BV, C=NL', root: 'emSign Root TLS CA - G3' },
-  { host: 'ev-g3c.emudhra.tki.jp',     label: 'CN=EM EV TLS CA - G3C, O=eMudhra Inc, C=US', root: 'emSign Root TLS CA - G3' },
-  { host: 'dv-g3b-aaa.emudhra.tki.jp', label: 'CN=EM DV TLS CA - G3B, O=eMudhra BV, C=NL', root: 'AAA Certificate Services' },
-  { host: 'dv-g3c-aaa.emudhra.tki.jp', label: 'CN=EM DV TLS CA - G3C, O=eMudhra Inc, C=US', root: 'AAA Certificate Services' },
-  { host: 'ov-g3b-aaa.emudhra.tki.jp', label: 'CN=EM OV TLS CA - G3B, O=eMudhra BV, C=NL', root: 'AAA Certificate Services' },
-  { host: 'ov-g3c-aaa.emudhra.tki.jp', label: 'CN=EM OV TLS CA - G3C, O=eMudhra Inc, C=US', root: 'AAA Certificate Services' },
-  { host: 'ev-g3b-aaa.emudhra.tki.jp', label: 'CN=EM EV TLS CA - G3B, O=eMudhra BV, C=NL', root: 'AAA Certificate Services' },
-  { host: 'ev-g3c-aaa.emudhra.tki.jp', label: 'CN=EM EV TLS CA - G3C, O=eMudhra Inc, C=US', root: 'AAA Certificate Services' },
-  { host: 'dv-g3b-noct.emudhra.tki.jp',     label: 'CN=EM DV TLS CA - G3B, O=eMudhra BV, C=NL', root: 'emSign Root TLS CA - G3', noct: true },
-  { host: 'dv-g3b-aaa-noct.emudhra.tki.jp', label: 'CN=EM DV TLS CA - G3B, O=eMudhra BV, C=NL', root: 'AAA Certificate Services', noct: true },
+  { host: 'dv-g3b.emudhra.tki.jp',     label: 'CN=EM DV TLS CA - G3B, O=eMudhra BV, C=NL', root: 'emSign Root TLS CA - G3', noct: true },
+  { host: 'dv-g3c.emudhra.tki.jp',     label: 'CN=EM DV TLS CA - G3C, O=eMudhra Inc, C=US', root: 'emSign Root TLS CA - G3', noct: true },
+  { host: 'ov-g3b.emudhra.tki.jp',     label: 'CN=EM OV TLS CA - G3B, O=eMudhra BV, C=NL', root: 'emSign Root TLS CA - G3', noct: true },
+  { host: 'ov-g3c.emudhra.tki.jp',     label: 'CN=EM OV TLS CA - G3C, O=eMudhra Inc, C=US', root: 'emSign Root TLS CA - G3', noct: true },
+  { host: 'ev-g3b.emudhra.tki.jp',     label: 'CN=EM EV TLS CA - G3B, O=eMudhra BV, C=NL', root: 'emSign Root TLS CA - G3', noct: true },
+  { host: 'ev-g3c.emudhra.tki.jp',     label: 'CN=EM EV TLS CA - G3C, O=eMudhra Inc, C=US', root: 'emSign Root TLS CA - G3', noct: true },
+  { host: 'dv-g3b-aaa.emudhra.tki.jp', label: 'CN=EM DV TLS CA - G3B, O=eMudhra BV, C=NL', root: 'AAA Certificate Services', noct: true },
+  { host: 'dv-g3c-aaa.emudhra.tki.jp', label: 'CN=EM DV TLS CA - G3C, O=eMudhra Inc, C=US', root: 'AAA Certificate Services', noct: true },
+  { host: 'ov-g3b-aaa.emudhra.tki.jp', label: 'CN=EM OV TLS CA - G3B, O=eMudhra BV, C=NL', root: 'AAA Certificate Services', noct: true },
+  { host: 'ov-g3c-aaa.emudhra.tki.jp', label: 'CN=EM OV TLS CA - G3C, O=eMudhra Inc, C=US', root: 'AAA Certificate Services', noct: true },
+  { host: 'ev-g3b-aaa.emudhra.tki.jp', label: 'CN=EM EV TLS CA - G3B, O=eMudhra BV, C=NL', root: 'AAA Certificate Services', noct: true },
+  { host: 'ev-g3c-aaa.emudhra.tki.jp', label: 'CN=EM EV TLS CA - G3C, O=eMudhra Inc, C=US', root: 'AAA Certificate Services', noct: true },
+  // { host: 'dv-g3b-noct.emudhra.tki.jp',     label: 'CN=EM DV TLS CA - G3B, O=eMudhra BV, C=NL', root: 'emSign Root TLS CA - G3', noct: true },
+  // { host: 'dv-g3b-aaa-noct.emudhra.tki.jp', label: 'CN=EM DV TLS CA - G3B, O=eMudhra BV, C=NL', root: 'AAA Certificate Services', noct: true },
 ];
 // Fetched alongside the hosts above as a liveness check: an ordinary, publicly
 // trusted certificate on the same servers, so every client should reach it. If
@@ -41,20 +41,20 @@ const COOLDOWN_MS = 10000;
 const EXPECTED_BODY = 'Your client successfully connected to the site.';
 
 const S = Object.assign({
-  noctTitle: 'No Certificate Transparency: this certificate was never logged to CT and has no SCTs. ' +
-    'Clients that enforce CT, such as Chrome, Safari and Firefox, reject it even if they still trust the intermediate.',
-  notYetChecked: 'not yet checked',
-  checking: 'checking…',
-  insecure: '❌ Insecure',
-  didNotConnect: '✅ Did not connect',
-  timedOut: '⚠️ Inconclusive (timed out)',
-  offline: '⚠️ Inconclusive (browser reports being offline)',
-  unexpected: status => `⚠️ Inconclusive (unexpected HTTP ${status} response)`,
-  summary: (n, total) => `Your browser trusted ${n} of ${total} compromised certificate chains.`,
-  incomplete: unknown => ` ${unknown} could not be checked, so the result is incomplete. ` +
-    'Please try again later, or from a network without a TLS-intercepting proxy.',
-  runAgain: 'Run again',
-  livenessFailed: 'The server liveness check failed, so these results may be invalid.',
+  noctTitle: 'Certificate Transparencyなし：この証明書はCTログに一度も記録されておらず，SCTもありません。' +
+     'Chrome，Safari，Firefoxなど，CTを必須とするクライアントは，中間CAをまだ信頼していてもこの証明書を拒否します。',
+  notYetChecked: 'まだテストしていません',
+  checking: '接続をテスト中…',
+  insecure: '❌ 危険（侵害された中間CAを信頼しています）',
+  didNotConnect: '✅ 接続されませんでした',
+  timedOut: '⚠️ 判定できません（時間内に応答がありませんでした）',
+  offline: '⚠️ 判定できません（ブラウザがオフラインと報告しています）',
+  unexpected: status => `⚠️ 判定できません（テスト用の応答を確認できませんでした：HTTP ${status}）`,
+  summary: (n, total) => `このブラウザは，侵害された証明書チェーン${total}件のうち${n}件を信頼しました。`,
+  incomplete: unknown => `${unknown}件は判定できなかったため，結果は不完全です。` +
+     'しばらくしてから，またはTLS通信を中継・検査するプロキシを経由しないネットワークから，もう一度お試しください。',
+  runAgain: 'もう一度接続をテストする',
+  livenessFailed: 'サーバーの死活確認に失敗したため，これらの結果は正しくない可能性があります。',
 }, window.CHECKER_STRINGS || {});
 
 const resultsBody = document.querySelector('#results tbody');
