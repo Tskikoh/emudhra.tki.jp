@@ -137,12 +137,10 @@ html[lang="ja"] { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "H
 </head>
 <body>
 <div class="container">
-
-  <div class="translation" role="note">
-  <p>このサイトは，<a href="https://github.com/Tskikoh">Tskikoh</a>が2026年10月28日時点の英語版を日本語に翻訳したものです。最新の情報や詳しい情報は，<a href="https://emudhra.we-have-a-problem.com/?lang=en" hreflang="en">英語版</a>をご覧ください。</p>
-  <p lang="en">This site was translated into Japanese by <a href="https://github.com/Tskikoh">Tskikoh</a> from the English page as of 28th October 2026. For the latest and more detailed information, see the <a href="https://emudhra.we-have-a-problem.com/?lang=en">English page</a>.</p>
-  </div>
-  
+<div class="translation" role="note">
+<p>このサイトは，<a href="https://github.com/Tskikoh">Tskikoh</a>が2026年10月28日時点の英語版を日本語に翻訳したものです。最新の情報や詳しい情報は，<a href="https://emudhra.we-have-a-problem.com/?lang=en" hreflang="en">英語版</a>をご覧ください。</p>
+<p lang="en">This site was translated into Japanese by <a href="https://github.com/Tskikoh">Tskikoh</a> from the English page as of 28th October 2026. For the latest and more detailed information, see the <a href="https://emudhra.we-have-a-problem.com/?lang=en">English page</a>.</p>
+</div>
 <p class="lang"><small><a href="https://emudhra.we-have-a-problem.com/?lang=en" hreflang="en" lang="en">English</a> / 日本語</small></p>
 <h1>eMudhra中間CA証明書の秘密鍵侵害</h1>
 <p style="text-align: center"><strong>2026年10月20日</strong></p>
@@ -152,7 +150,7 @@ html[lang="ja"] { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "H
 <h2 id="proof"><a href="#proof">どのように確認されたのか</a></h2>
 <p>秘密鍵が侵害されていることを実証するため、最初の報告者Wayneは、8件の中間CAそれぞれの秘密鍵で次のメッセージに署名し、10月17日に各ルートプログラム担当チームへ報告しました。</p>
 <blockquote translate="no"><p>We have a problem here - Wayne</p></blockquote>
-<p><a href="proof.zip">proof.zip</a> contains the message, and for each intermediate the certificate, its public key and a signature on the message. To verify with OpenSSL:</p>
+<p><a href="proof.zip">proof.zip</a>には、メッセージと、各中間CAの証明書、公開鍵、およびメッセージに対する署名が含まれています。OpenSSLでは次のように検証できます。</p>
 <pre translate="no">openssl x509 -in EM-DV-TLS-CA-G3B.crt.pem -noout -pubkey | diff - EM-DV-TLS-CA-G3B.pub.pem
 openssl dgst -sha384 -verify EM-DV-TLS-CA-G3B.pub.pem -signature EM-DV-TLS-CA-G3B.sig message.txt</pre>
 <h2 id="actions"><a href="#actions">これまでに実施された対応</a></h2>
@@ -171,30 +169,23 @@ openssl dgst -sha384 -verify EM-DV-TLS-CA-G3B.pub.pem -signature EM-DV-TLS-CA-G3
 <p>✅は接続に失敗したことだけを示します。ブラウザーは失敗理由をページへ通知しないため、ネットワーク障害と証明書拒否は同じ結果になります。再確認するには、その行のリンクを直接開いてください。警告ページなしで表示された場合、そのブラウザーは影響を受けています。</p>
 <p>ブラウザーがTLSを中継・検査するプロキシ配下にある場合、結果にはブラウザーではなくプロキシのトラストストアが反映されます。この場合の❌は、プロキシが侵害された中間CAをまだ信頼していることを意味します。ブラウザー自体が修正済みでも、プロキシが更新または無効化されるまで、その配下の全クライアントは影響を受けます。</p>
 <div class="ct-check-notice">
-  <p>
+<p>
     この日本語ミラーサイトでは、検証用証明書をCertificate Transparency
     （CT）ログへ登録できていません。そのため、このサイトの検証用ホストでは、
     CTログに登録された証明書を使用した確認は行えません。
   </p>
-
-  <p>
+<p>
     CTログに登録された証明書で確認する場合は、以下のボタンから、
     元となったサイトの確認機能をご利用ください。
     ボタンを押すと、元となったサイトが管理する
     <code>*.we-have-a-problem.com</code>
     の検証用ドメインへ接続します。
   </p>
-
-  <p>
-    <a
-      class="ct-check-button"
-      href="https://emudhra.we-have-a-problem.com/#check"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
+<p>
+<a class="ct-check-button" href="https://emudhra.we-have-a-problem.com/#check" rel="noopener noreferrer" target="_blank">
       CTログに登録された証明書を確認する
     </a>
-  </p>
+</p>
 </div>
 <p>curlなどのコマンドラインクライアントを確認するには、次を実行します。</p>
 <pre translate="no">curl https://dv-g3b.emudhra.tki.jp/
@@ -239,7 +230,7 @@ curl https://dv-g3b-aaa-noct.emudhra.tki.jp/</pre>
 <tr><td>Gentoo ca-certificates</td><td><a href="https://bugs.gentoo.org/984601">20260816.3.125</a></td></tr>
 <tr><td>GNU Guix</td><td><a href="https://codeberg.org/guix/guix/commit/7608a9954a7ba0a9ce756bf3135dc0ba51a40af9">7608a99</a></td></tr>
 <tr><td>Homebrew ca-certificates</td><td><a href="https://github.com/Homebrew/homebrew-core/blob/d02b8762f4a29859c47a635a0d2683223fea9812/Formula/c/ca-certificates.rb">2026-09-25_1</a></td></tr>
-<tr><td>NetBSD</td><td><a href="https://github.com/NetBSD/pkgsrc/commit/f496efcf5fe39a8a74aa506a73842b71dc14b76e">current</a></td></tr>
+<tr><td>NetBSD</td><td>開発版</td></tr>
 <tr><td>OmniOS web/ca-bundle</td><td><a href="https://github.com/omniosorg/omnios-build/blob/r151058/doc/ReleaseNotes.md#r151058y-2026-10-21">r151054by,<br/>r151056ay,<br/>r151058y</a></td></tr>
 <tr><td>OpenBSD</td><td><a href="https://cvsweb.openbsd.org/checkout/src/lib/libcrypto/cert.pem?rev=1.37">current</a><br/><a href="https://www.openbsd.org/errata80.html">8.0</a><br/><a href="https://www.openbsd.org/errata79.html">7.9</a></td></tr>
 <tr><td>openSUSE Leap ca-certificates-mozilla</td><td><a href="https://bugzilla.suse.com/show_bug.cgi?id=1286261">2.92-160000.1.1</a></td></tr>
@@ -287,7 +278,7 @@ curl https://dv-g3b-aaa-noct.emudhra.tki.jp/</pre>
 <tr><td>Deno</td><td><a href="https://github.com/denoland/deno/releases/tag/v2.9.8">2.9.8</a></td></tr>
 <tr><td>Electron</td><td><a href="https://github.com/electron/electron/releases/tag/v44.9.1">44.9.1,<br/>43.8.1,<br/>42.11.16</a></td></tr>
 <tr><td>Go</td><td><a href="https://groups.google.com/g/golang-announce/c/66pojueaQek">1.27.3,<br/>1.26.10</a></td></tr>
-<tr><td>Java</td><td><a class="pending" href="https://openjdk.org/emudhra">Pending for OpenJDK</a>,<br/><a href="https://ops.java/emudhra">Oracle JDK 27.0.1.0.3,<br/>25.0.5.0.3,<br/>21.0.13.0.3,<br/>17.0.21.0.3,<br/>11.0.33.0.3,<br/>8u511 b33</a>,<br/><a href="https://github.com/JetBrains/JetBrainsRuntime/releases">JetBrains Runtime 25.0.4.1b635.79,<br/>25.0.4.1b508.41,<br/>25.0.4.1b329.142,<br/>21.0.11b1163.125,<br/>21.0.9b1038.91</a></td></tr>
+<tr><td>Java</td><td><a class="pending" href="https://openjdk.org/emudhra">OpenJDKは対応待ち</a>,<br/><a href="https://ops.java/emudhra">Oracle JDK 27.0.1.0.3,<br/>25.0.5.0.3,<br/>21.0.13.0.3,<br/>17.0.21.0.3,<br/>11.0.33.0.3,<br/>8u511 b33</a>,<br/><a href="https://github.com/JetBrains/JetBrainsRuntime/releases">JetBrains Runtime 25.0.4.1b635.79,<br/>25.0.4.1b508.41,<br/>25.0.4.1b329.142,<br/>21.0.11b1163.125,<br/>21.0.9b1038.91</a></td></tr>
 <tr><td>Node.js</td><td><a href="https://github.com/nodejs/node/releases/tag/v26.12.1">26.12.1</a>,<br/><a href="https://github.com/nodejs/node/releases/tag/v24.22.1">24.22.1</a>,<br/><a href="https://github.com/nodejs/node/releases/tag/v22.23.4">22.23.4</a></td></tr>
 <tr><td>Python</td><td><a href="https://blog.python.org/2026/10/python-3152-31410-31318-31216-31118/">3.15.2,<br/>3.14.10,<br/>3.13.18,<br/>3.12.16,<br/>3.11.18</a></td></tr>
 </tbody>
@@ -314,7 +305,7 @@ curl https://dv-g3b-aaa-noct.emudhra.tki.jp/</pre>
 <tr><td>Godot</td><td><a class="pending" href="https://github.com/godotengine/godot/pull/124724">対応待ち</a></td></tr>
 <tr><td>gRPC</td><td><a href="https://github.com/grpc/grpc/releases/tag/v1.84.1">1.84.1</a>, <a href="https://github.com/grpc/grpc/releases/tag/v1.85.0">1.85.0</a></td></tr>
 <tr><td>Immich</td><td><a href="https://github.com/immich-app/immich/releases/tag/v3.3.5">3.3.5</a></td></tr>
-<tr><td>JetBrains IDEs</td><td><a href="https://blog.jetbrains.com/security/2026/10/compromised-emudhra-certificates-ides/">2025.3–2026.3 latest updates</a></td></tr>
+<tr><td>JetBrains IDEs</td><td><a href="https://blog.jetbrains.com/security/2026/10/compromised-emudhra-certificates-ides/">2025.3～2026.3の各最新版</a></td></tr>
 <tr><td>JetBrains Toolbox App</td><td><a href="https://blog.jetbrains.com/security/2026/10/compromised-emudhra-certificates-ides/">3.9.1, 3.8.2</a></td></tr>
 <tr><td>LibreOffice</td><td><a class="pending" href="https://gerrit.libreoffice.org/c/core/+/212892">対応待ち</a></td></tr>
 <tr><td>litellm</td><td><a href="https://github.com/BerriAI/litellm/releases/tag/v1.103.8">1.103.8</a>, <a href="https://github.com/BerriAI/litellm/releases/tag/v1.104.6">1.104.6</a>, <a href="https://github.com/BerriAI/litellm/releases/tag/v1.105.4">1.105.4</a>, <a href="https://github.com/BerriAI/litellm/releases/tag/v1.106.3">1.106.3</a></td></tr>
@@ -330,49 +321,49 @@ curl https://dv-g3b-aaa-noct.emudhra.tki.jp/</pre>
 <tr><td>Tailscale</td><td><a href="https://tailscale.com/changelog#2026-10-21">1.104.2</a></td></tr>
 <tr><td>uv</td><td><a href="https://github.com/astral-sh/uv/releases/tag/0.13.5">0.13.5</a></td></tr>
 <tr><td>Visual Studio Code</td><td><a href="https://code.visualstudio.com/updates/v1_143">1.143.1</a></td></tr>
-<tr><td>yt-dlp</td><td><a href="https://github.com/yt-dlp/yt-dlp/releases/tag/2026.10.26">2026.10.26</a>, <br/><a href="https://github.com/yt-dlp/yt-dlp/releases/tag/2026.10.21">WARNING: do not use self-updater</a></td></tr>
+<tr><td>yt-dlp</td><td><a href="https://github.com/yt-dlp/yt-dlp/releases/tag/2026.10.26">2026.10.26</a>, <br/><a href="https://github.com/yt-dlp/yt-dlp/releases/tag/2026.10.21">警告：自己更新機能を使用しないでください</a></td></tr>
 </tbody>
 </table>
 </details>
-<p>Add more at <a href="https://github.com/galadran/we-have-a-problem.com">github.com/galadran/we-have-a-problem.com</a>.</p>
+<p>追加情報は、<a href="https://github.com/galadran/we-have-a-problem.com">元となったプロジェクトのGitHubリポジトリ</a>へお寄せください。</p>
 <h3 id="workarounds"><a href="#workarounds">修正版が提供されるまでの回避策</a></h3>
 <details class="workaround" id="macos-curl">
 <summary><h4>macOSのcurl、git、Python</h4></summary>
-<p>macOS blocks the compromised intermediates in apps that use Apple's networking and security frameworks. However, the built-in command line tools verify certificates against <code translate="no">/etc/ssl/cert.pem</code> without checking revocation. Apple has <a href="https://support.apple.com/en-us/149555">stated</a> it will update that file in a future macOS update. Until then, you can remove the affected roots yourself.</p>
-<p>Back up the file:</p>
+<p>macOSでは、Appleのネットワークおよびセキュリティフレームワークを使用するアプリケーションについて、侵害された中間CAがブロックされています。一方、組み込みのコマンドラインツールは、失効確認を行わずに<code translate="no">/etc/ssl/cert.pem</code>を使用して証明書を検証します。Appleは、今後のmacOSアップデートでこのファイルを更新すると<a href="https://support.apple.com/en-us/149555">案内しています</a>。それまでは、影響を受けるルート証明書を利用者自身で削除できます。</p>
+<p>ファイルをバックアップします。</p>
 <pre translate="no">[ -e /etc/ssl/cert.pem.orig ] || sudo cp -p /etc/ssl/cert.pem /etc/ssl/cert.pem.orig</pre>
-<p>Remove emSign ECC Root CA - G3:</p>
+<p><strong>emSign ECC Root CA - G3</strong>を削除します。</p>
 <pre translate="no">t=$(mktemp) &amp;&amp;
 awk -v s='=== /C=IN/OU=emSign PKI/O=eMudhra Technologies Limited/CN=emSign ECC Root CA - G3' \
   '/^(===|###) /{skip=0} $0==s{skip=1} !skip' /etc/ssl/cert.pem &gt; "$t" &amp;&amp;
 [ -s "$t" ] &amp;&amp; sudo install -m 0644 -o root -g wheel "$t" /etc/ssl/cert.pem; rm -f "$t"</pre>
-<p>This prints nothing on success. To see what has been removed:</p>
+<p>成功した場合は何も表示されません。削除された内容を確認するには、次を実行します。</p>
 <pre translate="no">diff -u /etc/ssl/cert.pem.orig /etc/ssl/cert.pem</pre>
-<p>This does not block the six Sectigo cross-signed intermediates, which chain to AAA Certificate Services. To block those too, also remove that root. This may break verification of unaffected websites that chain to AAA Certificate Services:</p>
+<p>この操作だけでは、<strong>AAA Certificate Services</strong>へチェーンするSectigoのクロス署名付き中間CA 6件はブロックされません。これらもブロックする場合は、そのルート証明書も削除します。ただし、AAA Certificate Servicesへチェーンする影響を受けていないWebサイトの検証に失敗する可能性があります。</p>
 <pre translate="no">t=$(mktemp) &amp;&amp;
 awk -v s='=== /C=GB/ST=Greater Manchester/L=Salford/O=Comodo CA Limited/CN=AAA Certificate Services' \
   '/^(===|###) /{skip=0} $0==s{skip=1} !skip' /etc/ssl/cert.pem &gt; "$t" &amp;&amp;
 [ -s "$t" ] &amp;&amp; sudo install -m 0644 -o root -g wheel "$t" /etc/ssl/cert.pem; rm -f "$t"</pre>
-<p>Check the result. This lists either root if it is still in the file, and prints nothing if both were removed. If it shows an error, restore the backup:</p>
+<p>結果を確認します。どちらかのルート証明書がファイルに残っていれば表示され、両方とも削除されていれば何も表示されません。エラーが表示された場合は、バックアップから復元してください。</p>
 <pre translate="no">openssl crl2pkcs7 -nocrl -certfile /etc/ssl/cert.pem | openssl pkcs7 -print_certs -noout |
   grep -E 'emSign ECC Root CA - G3|AAA Certificate Services'</pre>
-<p>Apple has warned that until it ships its own fix, a macOS update may replace <code translate="no">/etc/ssl/cert.pem</code>. You may need to repeat these steps after each update.</p>
-<p>The built-in <code translate="no">pip3</code>, and the <code translate="no">pip</code> in virtual environments created from the built-in <code translate="no">python3</code>, use their own outdated copy of the roots instead. To make them use the fixed system file, run:</p>
+<p>Appleは、公式の修正が提供されるまで、macOSアップデートによって<code translate="no">/etc/ssl/cert.pem</code>が置き換わる可能性があると注意喚起しています。アップデートのたびに、この手順を再実行する必要がある場合があります。</p>
+<p>組み込みの<code translate="no">pip3</code>と、組み込みの<code translate="no">python3</code>から作成した仮想環境内の<code translate="no">pip</code>は、別途、古いルート証明書のコピーを使用します。修正済みのシステムファイルを使用させるには、次を実行します。</p>
 <pre translate="no">F="$(/usr/bin/python3 -c 'import sysconfig; print(sysconfig.get_path("stdlib"))')/sitecustomize.py" &amp;&amp;
 echo 'import os; os.environ.setdefault("PIP_CERT", "/etc/ssl/cert.pem")' | sudo tee -a "$F" &gt; /dev/null &amp;&amp;
 sudo chmod 644 "$F"</pre>
-<p>For nix-darwin users, please <strong>additionally</strong> follow NixOS instructions.</p>
-<p>See Apple's <a href="https://support.apple.com/en-us/149555">official guidance</a> for more information.</p>
+<p>nix-darwinを使用している場合は、<strong>併せて</strong>NixOS向けの手順も実施してください。</p>
+<p>詳しくは、Appleの<a href="https://support.apple.com/en-us/149555">公式案内</a>を参照してください。</p>
 </details>
 <details class="workaround" id="linux">
 <summary><h4>Linux</h4></summary>
-<p>Until a distribution ships an updated <code translate="no">ca-certificates</code> package, expert users can distrust the affected roots in the system trust store. This is NOT recommended for ordinary users.</p>
+<p>ディストリビューションから更新済みの<code translate="no">ca-certificates</code>パッケージが提供されるまで、十分な知識がある利用者は、システムトラストストアで影響を受けるルート証明書を信頼しないよう設定できます。<strong>一般利用者には推奨しません。</strong></p>
 <p>DebianおよびUbuntuではrootで実行します。</p>
 <pre translate="no">sed -i \
   -e 's|^mozilla/emSign_ECC_Root_CA_-_G3.crt|!&amp;|' \
   -e 's|^mozilla/Comodo_AAA_Services_root.crt|!&amp;|' \
   /etc/ca-certificates.conf &amp;&amp; update-ca-certificates</pre>
-<p>If you use OpenJDK from Debian or Ubuntu packages, the Java keystore at <code translate="no">/etc/ssl/certs/java/cacerts</code> is <strong>not</strong> refreshed when the system trust store changes, due to a <a href="https://bugs.debian.org/1069251">long-standing bug</a> in <code translate="no">ca-certificates-java</code>. This applies both to the workaround above and to the updated <code translate="no">ca-certificates</code> package. Following <a href="https://openjdk.org/emudhra#debian">OpenJDK's guidance</a>, remove and recreate the keystore as root:</p>
+<p>DebianまたはUbuntuのパッケージ版OpenJDKを使用している場合、<code translate="no">ca-certificates-java</code>の<a href="https://bugs.debian.org/1069251">長年未解決の不具合</a>により、システムトラストストアを変更してもJavaキーストア<code translate="no">/etc/ssl/certs/java/cacerts</code>は更新されません。これは、前述の回避策と更新済み<code translate="no">ca-certificates</code>パッケージの両方に該当します。<a href="https://openjdk.org/emudhra#debian">OpenJDKの案内</a>に従い、rootでキーストアを削除して再作成します。</p>
 <pre translate="no">rm -f /etc/ssl/certs/java/cacerts &amp;&amp; update-ca-certificates --fresh</pre>
 <p>Alpineではrootで実行します。</p>
 <pre translate="no">apk add ca-certificates &amp;&amp;
@@ -409,24 +400,24 @@ update-ca-trust</pre>
 </details>
 <details class="workaround" id="windows">
 <summary><h4>Windows</h4></summary>
-<p>Microsoft has shipped blocks for these certificates through Windows' <a href="https://learn.microsoft.com/en-us/windows-server/identity/ad-cs/certificate-trust#automatic-certificate-trust-list-updates">automatic certificate trust list updates</a>. Machines that receive these updates don't need this workaround. This script lets administrators block the compromised certificates locally on machines that do not, for example those that are offline or have automatic updates disabled.</p>
-<p><strong>この対策は企業管理下の端末には推奨しません。</strong> Your IT department will manage the rollout; contact them before applying local changes.</p>
-<p>Download and inspect <code translate="no">Block-EmudhraCompromisedCA.ps1</code> from the <span class="hint" title="We intentionally don't link the script directly here. Direct download links can trigger false-positive &quot;suspicious link&quot; warnings in Microsoft Teams and similar tools.">GitHub repository linked in the footer</span>, then run it from an elevated PowerShell terminal. Requires PowerShell 5.1 or later and the built-in Windows PKI module. This command bypasses execution policy for this process only; it does not change the machine's policy. Organization-enforced policies may still prevent execution.</p>
+<p>Microsoftは、Windowsの<a href="https://learn.microsoft.com/en-us/windows-server/identity/ad-cs/certificate-trust#automatic-certificate-trust-list-updates">証明書信頼リストの自動更新</a>を通じて、対象証明書のブロックを配布しています。この更新を受信している端末では、以下の回避策は不要です。オフライン端末や自動更新を無効化した端末など、更新を受信できない端末では、このスクリプトを使用して管理者が侵害された証明書をローカルでブロックできます。</p>
+<p><strong>この対策は企業管理下の端末には推奨しません。</strong>展開は組織のIT部門が管理するため、ローカルで変更を適用する前に担当部署へ確認してください。</p>
+<p>フッターからリンクしているGitHubリポジトリで<code translate="no">Block-EmudhraCompromisedCA.ps1</code>をダウンロードして内容を確認し、管理者権限のPowerShellターミナルから実行してください。PowerShell 5.1以降と、Windows標準のPKIモジュールが必要です。このコマンドが実行ポリシーを回避するのは現在のプロセスだけであり、端末全体のポリシーは変更しません。組織によって強制されたポリシーでは、実行できない場合があります。</p>
 <pre translate="no">powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Block-EmudhraCompromisedCA.ps1</pre>
-<p>The script imports its 16 compromised intermediates and cross-signs into <code translate="no">LocalMachine\Disallowed</code> (Untrusted Certificates).</p>
-<p>This mitigation applies to clients using the Windows operating system certificate trust stores and chain validation (including Schannel TLS and Authenticode). It adds blocks to Untrusted Certificates without modifying Trusted Root Certification Authorities. Applications using independent CA bundles still need their own updates.</p>
+<p>このスクリプトは、侵害された中間CAとクロス署名証明書の計16件を、<code translate="no">LocalMachine\Disallowed</code>（信頼されていない証明書）へ登録します。</p>
+<p>この対策は、Windowsの証明書トラストストアとチェーン検証を使用するクライアント（Schannel TLSおよびAuthenticodeを含む）に適用されます。「信頼されたルート証明機関」を変更せず、「信頼されていない証明書」へブロック対象を追加します。独自のCAバンドルを使用するアプリケーションには、引き続き個別の更新が必要です。</p>
 </details>
 <details class="workaround" id="android">
 <summary><h4>Android</h4></summary>
 <p>多くのAndroid端末には、Google Play開発者サービスの更新経路を通じて、対象証明書をブロックする更新が自動配信されています。</p>
-<p>On devices that have not received the updated blocklist, users may be able to disable the affected roots in the system trust store. Open Settings and search for <strong>Trusted credentials</strong>, which is often found under Security, then Encryption &amp; credentials. In the <strong>System</strong> tab, tap each of the following certificates and choose <strong>Disable</strong>:</p>
+<p>更新済みブロックリストをまだ受信していない端末では、システムトラストストアで影響を受けるルート証明書を無効化できる場合があります。「設定」を開き、「信頼できる認証情報」を検索してください。通常は「セキュリティ」から「暗号化と認証情報」の中にあります。「システム」タブで次の各証明書を選び、「無効にする」を選択します。</p>
 <ul>
-<li><strong>emSign ECC Root CA - G3</strong>, listed under eMudhra Technologies Limited</li>
-<li><strong>AAA Certificate Services</strong>, listed under Comodo CA Limited</li>
+<li><strong>emSign ECC Root CA - G3</strong>（eMudhra Technologies Limitedに表示）</li>
+<li><strong>AAA Certificate Services</strong>（Comodo CA Limitedに表示）</li>
 </ul>
-<p>The other eMudhra and Comodo certificates in the list are not affected and should be left enabled. Disabling AAA Certificate Services may cause errors on some websites that still chain to it. The roots can be re-enabled from the same screen once the device has received an update.</p>
-<p>Some Android devices may not allow users to disable system-installed roots.</p>
-<p>If you are using HarmonyOS 4.3 and earlier, you can disable system-installed roots in the same way as on other Android-based systems.</p>
+<p>一覧にあるその他のeMudhraおよびComodoの証明書は影響を受けていないため、有効のままにしてください。AAA Certificate Servicesを無効にすると、現在もこのルートへチェーンする一部のWebサイトでエラーになる可能性があります。端末が更新を受信した後は、同じ画面からルート証明書を再び有効にできます。</p>
+<p>Android端末によっては、システム組み込みルート証明書を利用者が無効化できない場合があります。</p>
+<p>HarmonyOS 4.3以前を使用している場合は、他のAndroidベースのシステムと同じ方法で、システム組み込みルート証明書を無効化できます。</p>
 </details>
 <details class="workaround" id="openharmony">
 <summary><h4>OpenHarmony</h4></summary>
@@ -448,7 +439,7 @@ certctl rehash
 </pre>
 </details>
 <hr/>
-  <p>
+<p>
   このサイト（<a href="https://emudhra.tki.jp/">emudhra.tki.jp</a>）は、
   <a href="https://emudhra.we-have-a-problem.com/">
     eMudhra Intermediate CA Compromise
@@ -461,7 +452,6 @@ certctl rehash
   に基づいて利用し、日本語訳、検証用ホスト名、証明書チェーン、
   およびクライアント確認機能の一部を変更しています。
 </p>
-
 <p>
   元となったプロジェクトの公開者、貢献者、およびソースコードについては、
   <a href="https://github.com/galadran/we-have-a-problem.com">
@@ -489,7 +479,7 @@ for (const group of document.querySelectorAll('details.group')) {
   const rows = group.querySelectorAll('tbody tr').length;
   const pending = group.querySelectorAll('tbody .pending').length;
   const count = document.createElement('small');
-  count.textContent = ' (' + rows + (pending ? '、対応待ち ' + pending + '件' : '' : '') + ')';
+  count.textContent = ' (' + rows + (pending ? '、対応待ち ' + pending + '件' : '') + ')';
   group.querySelector('summary > h4').append(count);
 }
 
@@ -505,5 +495,5 @@ for (const details of document.querySelectorAll('details[id]')) {
   });
 }
 </script>
-</body>
+</div></body>
 </html>
