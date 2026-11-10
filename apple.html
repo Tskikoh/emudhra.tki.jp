@@ -1,28 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Eleven days after Apple was notified of the eMudhra CA compromise, the git, curl and python3 that Apple ships with macOS still trust the compromised certificates.">
-  <title>Apple's git still trusts the compromised eMudhra certificates</title>
+  <meta name="description" content="AppleへのeMudhra認証局侵害の通知から11日後も、macOSに付属するgit、curl、python3は侵害された証明書を信頼していました。">
+  <title>Appleのgitは侵害されたeMudhra証明書をまだ信頼している</title>
   <link rel="canonical" href="https://emudhra.we-have-a-problem.com/apple.html">
+  <link rel="alternate" hreflang="en" href="https://emudhra.we-have-a-problem.com/apple.html">
+  <link rel="alternate" hreflang="ja" href="https://emudhra.tki.jp/apple.html">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://emudhra.we-have-a-problem.com/apple.html">
-  <meta property="og:title" content="Apple's git still trusts the compromised eMudhra certificates">
-  <meta property="og:description" content="Eleven days after Apple was notified of the eMudhra CA compromise, the git, curl and python3 that Apple ships with macOS still trust the compromised certificates.">
-  <meta property="og:site_name" content="we-have-a-problem.com">
+  <meta property="og:url" content="https://emudhra.tki.jp/apple.html">
+  <meta property="og:title" content="Appleのgitは侵害されたeMudhra証明書をまだ信頼している">
+  <meta property="og:description" content="AppleへのeMudhra認証局侵害の通知から11日後も、macOSに付属するgit、curl、python3は侵害された証明書を信頼していました。">
+  <meta property="og:site_name" content="emudhra.tki.jp">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Apple's git still trusts the compromised eMudhra certificates">
-  <meta name="twitter:description" content="Eleven days after Apple was notified of the eMudhra CA compromise, the git, curl and python3 that Apple ships with macOS still trust the compromised certificates.">
+  <meta name="twitter:title" content="Appleのgitは侵害されたeMudhra証明書をまだ信頼している">
+  <meta name="twitter:description" content="AppleへのeMudhra認証局侵害の通知から11日後も、macOSに付属するgit、curl、python3は侵害された証明書を信頼していました。">
   <style>
-    html { font: 15px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+    html { font: 15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif; -webkit-font-smoothing: antialiased; }
     @media (min-width: 30rem) { html { font-size: 18px; } }
     body { margin: 2rem 0 5rem; color: #333; }
     @media (min-width: 30rem) { body { margin-top: 5rem; } }
     .container { max-width: 50rem; margin: 0 auto; padding: 0 1rem; }
     a { color: #0074d9; text-decoration: none; }
     a:hover, a:focus { text-decoration: underline; }
-    h1, h2 { margin: 0 0 0.5rem -0.1rem; line-height: 1; color: #111; }
+    h1, h2 { margin: 0 0 0.5rem -0.1rem; line-height: 1.25; color: #111; }
     h2 a { color: inherit; }
     h1 { font-size: 2rem; margin-bottom: 1rem; }
     @media (min-width: 30rem) { h1 { font-size: 2.5rem; margin-bottom: 3rem; } }
@@ -36,65 +38,87 @@
     .back { margin: -1rem 0 1rem; text-align: right; }
     @media (min-width: 30rem) { .back { margin-top: -3rem; } }
     .date { text-align: center; }
+    .translation { border: 1px solid #9cc3e8; border-left: .25rem solid #0074d9; background: #eaf3fc; color: #333; padding: .75rem 1rem; margin: 0 0 1.5rem; font-size: .9rem; }
+    .translation p { margin: 0 0 .5rem; }
+    .translation p:last-child { margin: 0; }
+    .test-note { border: 1px solid #b7791f; border-left-width: 5px; border-radius: .4rem; background: #fffaf0; padding: .75rem 1rem; margin-bottom: 1rem; }
+    .test-note p:last-child { margin-bottom: 0; }
   </style>
 </head>
 <body>
 <div class="container">
+  <div class="translation" role="note">
+    <p>このページは、<a href="https://emudhra.we-have-a-problem.com/apple.html" hreflang="en" lang="en">英語版</a>を日本語に翻訳した非公式ミラーです。内容の基準となる最新版は英語版をご確認ください。</p>
+    <p lang="en">This page is an unofficial Japanese translation mirror of the <a href="https://emudhra.we-have-a-problem.com/apple.html">English page</a>. Refer to the English page for the authoritative and latest version.</p>
+  </div>
 
-<p class="back"><small><a href="./">← Main Page</a></small></p>
+  <p class="back"><small><a href="./">← メインページ</a></small></p>
+  <h1>Appleのgitは侵害されたeMudhra証明書をまだ信頼している</h1>
+  <p class="date"><strong>2026年10月28日</strong></p>
 
-<h1>Apple's git still trusts the compromised eMudhra certificates</h1>
+  <p>Appleには、10月17日にeMudhraのインシデントが通知されました。しかし10月28日時点でも、AppleがmacOSに同梱する開発者向けツールのうち、git、curl、python3などは、侵害された証明書をまだ信頼していました。</p>
 
-<p class="date"><strong>28th October 2026</strong></p>
+  <p>さらに、10月26日に公開されたmacOS 27.2でも問題は修正されず、利用者が手作業で適用していた回避策が元に戻されたため、再び影響を受ける状態になりました。</p>
 
-<p>Apple was notified of the eMudhra incident on 17th October. As of 28th October, the developer tools Apple ships with macOS, including git, curl and python3, still trust the compromised certificates.</p>
+  <p>その一方で、ボランティア主体のものを含む<a href="./#developers">多数の他プロジェクト</a>は、すでに数日前に修正版を提供していました。</p>
 
-<p>Worse, macOS 27.2, released on 26th October, did not fix the issue and undid the workaround that users had applied by hand, leaving them vulnerable again.</p>
+  <h2 id="why"><a href="#why">なぜ問題なのか</a></h2>
 
-<p>Meanwhile, <a href="./#developers">dozens of other projects</a>, many run by volunteers, shipped fixes days ago.</p>
+  <p>これらのツールが行う任意のHTTPS接続を、第三者が中継して内容を差し替えられる可能性があります。</p>
 
-<h2 id="why"><a href="#why">Why does this matter?</a></h2>
+  <p>gitの場合、<code>https://</code>リモートからのcloneやpullで攻撃者が選んだコードを送り込まれる、pushする内容を通信途中で改変される、GitHubトークンなどの認証情報を奪われる、といった危険があります。</p>
 
-<p>Anyone can intercept any HTTPS connection these tools make.</p>
+  <p>お使いのgitが影響を受けるか確認するには、次を実行します。</p>
 
-<p>For git, that means clones and pulls from <code>https://</code> remotes can deliver attacker-chosen code, pushes can be altered in transit, and your credentials, such as GitHub tokens, can be intercepted.</p>
+  <pre translate="no">git ls-remote https://git-emudhra.we-have-a-problem.com/check.git</pre>
 
-<p>To check whether your git is affected, run:</p>
-<pre translate="no">git ls-remote https://git-emudhra.we-have-a-problem.com/check.git</pre>
-<p>A certificate error means your git is protected. If git lists a commit, your git is affected. Your connections to GitHub, or any other <code>https://</code> git remote, can be intercepted and tampered with.</p>
+  <div class="test-note">
+    <p>この検証先は、CTログに登録された証明書を使用するミラー元の<code>*.we-have-a-problem.com</code>ドメインです。</p>
+  </div>
 
-<p>To see an attack end to end, run the command below in a temporary directory. It clones a repository from a test server impersonating GitHub. The <code translate="no">-c</code> option redirects <code translate="no">github.com</code> to our test server for this one command only. The server presents a <code translate="no">github.com</code> certificate issued by one of the compromised eMudhra intermediates.</p>
-<pre translate="no">git -c http.curloptResolve=github.com:443:15.235.19.186 clone https://fake-user@github.com/galadran/emudhra-git-test</pre>
+  <p>証明書エラーになれば、そのgitは保護されています。コミット情報が表示された場合、そのgitは影響を受けています。その場合、GitHubを含む任意の<code>https://</code>リモートへの接続が中継・改変される可能性があります。</p>
 
-<p>A patched git will refuse with a certificate error. If the clone succeeds, you'll see a <code translate="no">README.md</code> starting with <strong>INTERCEPTED</strong>.</p>
+  <p>攻撃の一連の流れを確認するには、一時ディレクトリで次のコマンドを実行します。このコマンドは、GitHubになりすましたテストサーバーからリポジトリをcloneします。<code translate="no">-c</code>オプションは、この1回のコマンドに限り、<code translate="no">github.com</code>をテストサーバーへ転送します。テストサーバーは、侵害されたeMudhra中間CAの1つによって発行された<code translate="no">github.com</code>用証明書を提示します。</p>
 
-<p>A real attacker would not need the extra option. Anyone on the network path between you and GitHub can redirect your traffic themselves.</p>
+  <pre translate="no">git -c http.curloptResolve=github.com:443:15.235.19.186 clone https://fake-user@github.com/galadran/emudhra-git-test</pre>
 
-<p>You can replace the demo repository with any other, public or private. Keep the <code translate="no">fake-user@</code> prefix. Without it, git would send your GitHub credentials to the test server. For example:</p>
+  <div class="test-note">
+    <p>このテストは、ミラー元が管理するCT登録済み証明書とIPアドレス<code>15.235.19.186</code>を引き続き使用します。</p>
+  </div>
 
-<pre translate="no">git -c http.curloptResolve=github.com:443:15.235.19.186 clone https://fake-user@github.com/Homebrew/brew</pre>
+  <p>修正済みのgitは、証明書エラーで接続を拒否します。cloneに成功した場合は、先頭が<strong>INTERCEPTED</strong>となっている<code translate="no">README.md</code>が表示されます。</p>
 
-<p>curl, python3 and the other tools Apple ships are affected in the same way. To check curl, run:</p>
-<pre translate="no">curl https://dv-g3b-noct-emudhra.we-have-a-problem.com/
-curl https://dv-g3b-aaa-noct-emudhra.we-have-a-problem.com/</pre>
-<p>A certificate error means curl is protected.</p>
+  <p>実際の攻撃者は、追加のオプションを使用する必要はありません。利用者とGitHubの間のネットワーク経路上にいる者は、自ら通信を転送できます。</p>
 
-<h2 id="ask"><a href="#ask">What should Apple do?</a></h2>
+  <p>デモ用リポジトリは、公開・非公開を問わず別のリポジトリへ置き換えられます。<code translate="no">fake-user@</code>の部分は残してください。これを省くと、gitがGitHubの認証情報をテストサーバーへ送信する可能性があります。例えば、次のように実行します。</p>
 
-<p>Apple has already protected Safari and other apps built on its networking framework.</p>
+  <pre translate="no">git -c http.curloptResolve=github.com:443:15.235.19.186 clone https://fake-user@github.com/Homebrew/brew</pre>
 
-<p>Apple needs to ship a fix for macOS developers as soon as possible, for example by removing the affected roots from <code translate="no">/etc/ssl/cert.pem</code>.</p>
+  <p>Appleが同梱するcurl、python3、その他のツールも同様に影響を受けます。curlを確認するには、次を実行します。</p>
 
-<h2 id="workaround"><a href="#workaround">What can developers do in the meantime?</a></h2>
+  <pre translate="no">curl https://dv-g3b.emudhra.tki.jp/
+curl https://dv-g3b-aaa.emudhra.tki.jp/</pre>
 
-<p>The affected roots can be removed by hand. The <a href="./#macos-curl">macOS workaround</a> on the main page walks through the steps. Apple's <a href="https://support.apple.com/en-us/149555">guidance</a> states that macOS updates may revert the fix, so developers need to repeat the checks above and the workaround after every update until Apple ships a fix.</p>
+  <div class="test-note">
+    <p>この日本語ミラー側の2つの検証用証明書は、CTログに登録されておらず、SCTもありません。したがって、接続に成功した場合は、curlが侵害された中間CAを信頼し、かつCT未登録の証明書を受け入れたことを示します。証明書エラーになった場合は接続が拒否されていますが、拒否理由が中間CAの不信頼によるものか、CT要件によるものかは、この結果だけでは区別できません。</p>
+    <p>CT登録済み証明書を使った確認には、前述の<code>git-emudhra.we-have-a-problem.com</code>、ミラー元の検証ページ、またはミラー元が提供するCT登録済み検証ホストを使用してください。</p>
+  </div>
 
-<p>Security teams should also consider whether macOS runners are used in their CI or other build infrastructure and evaluate the supply chain risk.</p>
+  <h2 id="ask"><a href="#ask">Appleは何をすべきか</a></h2>
 
-<hr>
+  <p>Appleはすでに、SafariとAppleのネットワークフレームワークを使用するその他のアプリケーションを保護しています。</p>
 
-<p>Site published by <a href="https://github.com/dennisjackson">Dennis Jackson</a>. This site is the work of <a href="https://github.com/galadran/we-have-a-problem.com/graphs/contributors">many contributors</a> from the community. The source is on <a href="https://github.com/galadran/we-have-a-problem.com">GitHub</a> and PRs are welcome. Licensed under the <a href="https://github.com/galadran/we-have-a-problem.com/blob/main/LICENSE">Apache License, Version 2.0</a>.</p>
+  <p>Appleは、影響を受けるルート証明書を<code translate="no">/etc/ssl/cert.pem</code>から削除するなど、macOS開発者向けの修正をできるだけ早く提供する必要があります。</p>
 
+  <h2 id="workaround"><a href="#workaround">修正までの間、開発者ができること</a></h2>
+
+  <p>影響を受けるルート証明書は手作業で削除できます。メインページの<a href="./#macos-curl">macOS向け回避策</a>に手順を記載しています。Appleの<a href="https://support.apple.com/en-us/149555">案内</a>では、macOSアップデートによって修正が元に戻る可能性があるとされています。そのため、Appleが修正を提供するまでは、アップデートのたびに前述の確認と回避策を再実行する必要があります。</p>
+
+  <p>セキュリティ担当者は、CIやその他のビルド基盤でmacOSランナーを使用していないか確認し、ソフトウェアサプライチェーン上のリスクも評価してください。</p>
+
+  <hr>
+
+  <p>このページ（<a href="https://emudhra.tki.jp/apple.html">emudhra.tki.jp/apple.html</a>）は、<a href="https://emudhra.we-have-a-problem.com/apple.html">英語版</a>を基にした非公式な日本語ミラーです。元となったサイトは<a href="https://github.com/dennisjackson">Dennis Jackson</a>によって公開され、<a href="https://github.com/galadran/we-have-a-problem.com/graphs/contributors">コミュニティの多数の貢献者</a>によって作成されています。ソースコードは<a href="https://github.com/galadran/we-have-a-problem.com">GitHub</a>で公開され、<a href="https://github.com/galadran/we-have-a-problem.com/blob/main/LICENSE">Apache License 2.0</a>が適用されます。</p>
 </div>
 </body>
 </html>
